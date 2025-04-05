@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Güncel Boykot Listesi ile iktidar yanlısı boykot markalarını öğrenin. Boykot markaları listesi ile bilinçli tüketim yapın!">
+    <meta name="keywords" content="boykot, markalar, liste, boykot markaları, bilinçli tüketim, diktatörlük erişim engeli">
+    <meta name="robots" content="index, follow">
+    <title>Destek Listesi</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="assets/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 p-4">
+        <!-- Sabit Header -->
+        <header id="fixedHeader" class="bg-gray-800 text-white w-full py-4 px-6 fixed top-0 left-0 right-0 z-50">
+            <div class="flex justify-between items-center max-w-4xl mx-auto">
+                <!-- Menü Butonları -->
+                <nav class="flex gap-4">
+                    <a href="index.html" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+                        Boykot
+                    </a>
+                    <a href="destek.html" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                        Destek
+                    </a>
+                    <a href="unluler.html" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Ünlüler
+                    </a>
+                </nav>
+            </div>
+        </header>
+        
+    <main style="margin-top: 75px;">
+        <div class="max-w-4xl mx-auto celebritiesList mt-2">
+            <div id="alertBox" class="bg-blue-500 text-white p-4 rounded-lg mb-4">
+                <i class="fas fa-info-circle mr-3"></i>Listede eksik olduğunu düşünüyorsanız <a href="https://bsky.app/profile/boykotlistesi.bsky.social" target="_blank" class="text-blue-200 underline">Bluesky</a> üzerinden mesaj atabilirsiniz.
+            </div>
+
+            <p id="celebritiesCountText" class="text-gray-400 text-xs mb-2"></p>
+
+            <input 
+            type="text" 
+            id="celebritiesSearchInput" 
+            placeholder="Destek markası arayın..." 
+            class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+            <div id="celebritiesList" class="space-y-4"></div>
+        </div>
+    </main>
+
+    <script>
+        const rendercelebrities = () => {
+            const celebritiesList = document.getElementById('celebritiesList');
+
+            fetch('./assets/celebrities.json')
+            .then(response => response.json())
+            .then(celebrities => {
+                // Marka sayısını hesaplama
+                const totalcelebrities = celebrities.length;
+
+                // Marka sayısını ekrana yazdırma
+                const celebritiesCountText = document.getElementById('celebritiesCountText');
+                celebritiesCountText.innerHTML = `Destek veren <b>${totalcelebrities}</b> adet ünlü var!`;
+
+                // Mevcut markaları listeleme
+                const celebritiesList = document.getElementById('celebritiesList');
+                celebrities.sort((a, b) => a.name.localeCompare(b.name));
+                celebrities.forEach(celebrities => {
+                    const celebritiesCard = document.createElement('div');
+                    celebritiesCard.classList.add('celebrities-card', 'flex', 'items-center', 'bg-gray-800', 'border', 'border-gray-700', 'rounded-lg', 'shadow-sm');
+                    celebritiesCard.setAttribute('data-type', celebrities.type);
+
+                    const celebritiesImage = document.createElement('img');
+                    celebritiesImage.classList.add('object-fit', 'w-24', 'h-24', 'rounded-s-lg');
+                    celebritiesImage.src = celebrities.logo;
+                    celebritiesImage.alt = celebrities.name;
+
+                    const celebritiesName = document.createElement('h5');
+                    celebritiesName.classList.add('text-xl', 'font-bold', 'text-white');
+                    celebritiesName.textContent = celebrities.name;
+
+                    const celebritiesDescription = document.createElement('p');
+                    celebritiesDescription.classList.add('text-gray-400', 'text-xs');
+                    celebritiesDescription.textContent = celebrities.description;
+
+                    const boycottTag = document.createElement('span');
+                    if (celebrities.status === 1) {
+                        boycottTag.classList.add('text-green-500', 'text-xs', 'font-thin');
+                        boycottTag.textContent = 'Destek verdi!';
+                    } else if (celebrities.status === 0) {
+                        boycottTag.classList.add('text-orange-500', 'text-xs', 'font-thin');
+                        boycottTag.textContent = 'Sessiz kaldı!';
+                    }
+
+                    const cardContent = document.createElement('div');
+                    cardContent.classList.add('p-4', 'flex-1');
+                    cardContent.appendChild(celebritiesName);
+                    cardContent.appendChild(celebritiesDescription);
+                    cardContent.appendChild(boycottTag);
+
+                    celebritiesCard.appendChild(celebritiesImage);
+                    celebritiesCard.appendChild(cardContent);
+
+                    celebritiesList.appendChild(celebritiesCard);
+                });
+            })
+            .catch(error => console.error('Veri çekme hatası:', error));
+        };
+
+
+        // Arama işlemi
+        const celebritiesSearchInput = document.getElementById('celebritiesSearchInput');
+        celebritiesSearchInput.addEventListener('input', () => {
+            const searchValue = celebritiesSearchInput.value.toLowerCase().trim();
+            const celebritiesCards = document.querySelectorAll('.celebrities-card');
+
+            celebritiesCards.forEach(card => {
+                const celebritiesName = card.querySelector('h5').textContent.toLowerCase();
+                if (celebritiesName.includes(searchValue) || searchValue === '') {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+
+        // Sayfa yüklendiğinde markaları oluştur
+        document.addEventListener('DOMContentLoaded', rendercelebrities);
+    </script>
+</body>
+</html>
