@@ -31,7 +31,7 @@ const renderBrands = () => {
 
             const brandDescription = document.createElement('p');
             brandDescription.classList.add('text-gray-400', 'text-sm', 'mt-1');
-            brandDescription.textContent = brand.description || 'Açıklama yok';
+            brandDescription.textContent = brand.description;
 
             const boycottTag = document.createElement('span');
             if (brand.status === 1) {
