@@ -38,5 +38,15 @@
     "name": "Berna Laçin",
     "logo": "assets/celebrities/BernaLacin.jpg",
     "status": 1
+    },
+    {
+    "name": "Cem Yılmaz",
+    "logo": "assets/celebrities/CemYilmaz.jpg",
+    "status": 1
+    },
+    {
+    "name": "Can Yılmaz",
+    "logo": "assets/celebrities/CanYilmaz.jpg",
+    "status": 1
     }
 ]
