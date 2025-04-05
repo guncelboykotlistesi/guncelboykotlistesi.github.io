@@ -5,12 +5,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Logo */
-#hhLogo img {
-    width: 40px;
-    height: 40px;
-}
-
 /* Alert Box */
 #alertBox {
     background-color: #0b8cf5; /* Sarı tonlarında arka plan */
