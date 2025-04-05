@@ -82,6 +82,7 @@
     {
     "name": "Bereket Döner",
     "logo": "assets/brands/bereketdoner.jpeg",
+    "description": "Sahibi Çetin Tekdemir FETÖ/PDY operasyonlarında tutuklandı",
     "status": 1,
     "type": "dukkan"
     },
@@ -1151,6 +1152,20 @@
     "name": "Pierre Cardin",
     "logo": "assets/brands/pierrecardin.png",
     "description": "Ahmet Nazif Zorlu AK Parti Denizli 8. Olağan İl Kongresi",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "YÖRPAŞ",
+    "logo": "assets/brands/yorpas.jpg",
+    "description": "Sahibi Çetin Tekdemir FETÖ/PDY operasyonlarında tutuklandı",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Komagene",
+    "logo": "assets/brands/komagene.png",
+    "description": "Sahibi Çetin Tekdemir FETÖ/PDY operasyonlarında tutuklandı",
     "status": 1,
     "type": ""
     }
