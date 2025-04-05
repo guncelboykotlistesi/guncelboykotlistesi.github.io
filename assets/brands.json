@@ -1123,6 +1123,13 @@
     "description": "FETÖ Soruşturması",
     "status": 1,
     "type": ""
+    },
+    {
+    "name": "Artukbey Kahve",
+    "logo": "assets/brands/artukbeykahve.jpg",
+    "description": "",
+    "status": 1,
+    "type": ""
     }
 
 ]
