@@ -30,7 +30,7 @@ const renderBrands = () => {
             brandName.textContent = brand.name;
 
             const brandDescription = document.createElement('p');
-            brandDescription.classList.add('text-gray-400', 'text-sm', 'mt-1');
+            brandDescription.classList.add('text-gray-400', 'text-xs');
             brandDescription.textContent = brand.description;
 
             const boycottTag = document.createElement('span');
