@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boykot Listesi</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Alert Box */
+        #alertBox {
+            background-color: #F59E0B; /* Sarı tonlarında arka plan */
+            color: white; /* Yazı rengi beyaz */
+            font-size: 0.75rem;
+            font-weight: 400;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px; /* Input ile araya boşluk ekliyoruz */
+        }
+
+        #filterButtons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+
+        @media (min-width: 640px) {
+            .filter-btn {
+                flex: 1 1 auto;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 p-4">
+    <div class="max-w-4xl mx-auto brandList mt-2">
+        <div id="alertBox" class="bg-yellow-500 text-white p-4 rounded-lg mb-4">
+            <i class="fas fa-exclamation-triangle mr-3"></i>Boykot listesi bulunan sitelere diktatör rejim tarafından erişim engeli uygulanmaktadır!
+        </div>
+
+        <p id="brandCountText" class="text-gray-400 text-xs mb-2"></p>
+
+        <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Boykot markası arayın..." 
+        class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+        <!-- Filtreleme Butonları -->
+        <div id="filterButtons" class="flex gap-2 mb-4">
+            <button data-filter="all" class="filter-btn bg-blue-500 text-white px-1 py-1 rounded-lg">Tümü</button>
+            <button data-filter="akaryakit" class="filter-btn bg-red-500 text-white px-1 py-1 rounded-lg">Akaryakıt</button>
+            <button data-filter="alisveris" class="filter-btn bg-purple-500 text-white px-1 py-1 rounded-lg">Alışveriş</button>
+            <button data-filter="gida" class="filter-btn bg-orange-500 text-white px-1 py-1 rounded-lg">Gıda</button>
+            <button data-filter="dukkan" class="filter-btn bg-green-500 text-white px-1 py-1 rounded-lg">Dükkan</button>
+            <button data-filter="medya" class="filter-btn bg-gray-500 text-white px-1 py-1 rounded-lg">Medya</button>
+
+        </div>
+
+        <div id="brandList" class="space-y-4"></div>
+    </div>
+
+    <script>
+        // JSON verileri burada tanımlı
+        const brands = [
+            {
+            "name": "a2",
+            "logo": "brands/a2.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "A101",
+            "logo": "brands/a101.png",
+            "status": 1,
+            "type": "alisveris"
+            },
+            {
+            "name": "Adel",
+            "logo": "brands/adel.png",
+            "status": 1,
+            "type": "dukkan"
+            },
+            {
+            "name": "aHaber",
+            "logo": "brands/ahaber.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Akit",
+            "logo": "brands/akit.jpeg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Aljazeera",
+            "logo": "brands/aljazeera.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Anadolu Grubu",
+            "logo": "brands/anadolugrubu.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "aPara",
+            "logo": "brands/apara.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "aSpor",
+            "logo": "brands/aspor.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "atv",
+            "logo": "brands/atv.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Audi",
+            "logo": "brands/audi.avif",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Bein",
+            "logo": "brands/bein.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Bein Sports",
+            "logo": "brands/beinsports.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Bereket Döner",
+            "logo": "brands/bereketdoner.jpeg",
+            "status": 1,
+            "type": "dukkan"
+            },
+            {
+            "name": "B&G Store",
+            "logo": "brands/bgstore.png",
+            "status": 1,
+            "type": "dukkan"
+            },
+            {
+            "name": "bigpara",
+            "logo": "brands/bigpara.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "BİM",
+            "logo": "brands/bim.png",
+            "status": 1,
+            "type": "alisveris"
+            },
+            {
+            "name": "BiP",
+            "logo": "brands/bip.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "BMC",
+            "logo": "brands/bmc.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Bugatti",
+            "logo": "brands/bugatti.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "ByNoGame",
+            "logo": "brands/bynogame.png",
+            "status": 1,
+            "type": "alisveris"
+            },
+            {
+            "name": "Cartoon Network",
+            "logo": "brands/cartoonnetwork.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Çaykur",
+            "logo": "brands/caykur.png",
+            "status": 1,
+            "type": "gida"
+            },
+            {
+            "name": "Cengiz Holding",
+            "logo": "brands/cengizholding.jpeg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "CNNTürk",
+            "logo": "brands/cnnturk.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Coca Cola",
+            "logo": "brands/cocacola.webp",
+            "status": 1,
+            "type": "gida"
+            },
+            {
+            "name": "DenizBank",
+            "logo": "brands/denizbank.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Doğan Haber Ajansı",
+            "logo": "brands/dha.gif",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Digiturk",
+            "logo": "brands/digiturk.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Doğan Holding",
+            "logo": "brands/doganholding.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Doğuş Grubu",
+            "logo": "brands/dogusgrubu.jpeg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "D&R",
+            "logo": "brands/dr.jpg",
+            "status": 1,
+            "type": "alisveris"
+            },
+            {
+            "name": "Dream TV",
+            "logo": "brands/dreamtv.webp",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "DSMART",
+            "logo": "brands/dsmart.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Efes Pilsen",
+            "logo": "brands/efes.png",
+            "status": 1,
+            "type": "gida"
+            },
+            {
+            "name": "EspressoLab",
+            "logo": "brands/espressolab.jpg",
+            "status": 1,
+            "type": "gida"
+            },
+            {
+            "name": "EtsTur",
+            "logo": "brands/etstur.jpeg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Exxen",
+            "logo": "brands/exxen.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Fanatik",
+            "logo": "brands/fanatik.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Fikriyat",
+            "logo": "brands/fikriyat.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "File Market",
+            "logo": "brands/filemarket.png",
+            "status": 1,
+            "type": "alisveris"
+            },
+            {
+            "name": "fotoMaç",
+            "logo": "brands/fotomac.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Galataport İstanbul",
+            "logo": "brands/galataport.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Garanti BBVA",
+            "logo": "brands/garanti.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Gloria Jean's",
+            "logo": "brands/gloriajeans.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Godiva",
+            "logo": "brands/godiva.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "HalkBank",
+            "logo": "brands/halkbank.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Honda",
+            "logo": "brands/honda.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Hürriyet",
+            "logo": "brands/hurriyet.webp",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "İddia",
+            "logo": "brands/iddia.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "idefix",
+            "logo": "brands/idefix.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "İhlas Haber Ajansı",
+            "logo": "brands/iha.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "İHH",
+            "logo": "brands/ihh.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "İstikbal",
+            "logo": "brands/istikbal.png",
+            "status": 1,
+            "type": "dukkan"
+            },
+            {
+            "name": "Kalyon Holding",
+            "logo": "brands/kalyonholding.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Kamil Koç",
+            "logo": "brands/kamilkoc.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "KanalD",
+            "logo": "brands/kanald.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Kilim",
+            "logo": "brands/kilim.jpg",
+            "status": 1,
+            "type": "dukkan"
+            },
+            {
+            "name": "Kim Market",
+            "logo": "brands/kimmarket.png",
+            "status": 1,
+            "type": "alisveris"
+            },
+            {
+            "name": "Kızılay",
+            "logo": "brands/kizilay.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Kolin İnşaat",
+            "logo": "brands/kolininsaat.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Komili",
+            "logo": "brands/komili.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Koza Holding",
+            "logo": "brands/kozaholding.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "MADO",
+            "logo": "brands/mado.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Makro",
+            "logo": "brands/makro.webp",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Martı",
+            "logo": "brands/marti.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Mc Donald's",
+            "logo": "brands/mcdonalds.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Metro Turizm",
+            "logo": "brands/metroturizm.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Migros",
+            "logo": "brands/migros.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Milli Piyango",
+            "logo": "brands/millipiyango.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Milliyet",
+            "logo": "brands/milliyet.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Minika Çocuk",
+            "logo": "brands/minikacocuk.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "MinikaGO",
+            "logo": "brands/minikago.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Misli",
+            "logo": "brands/misli.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "MTV",
+            "logo": "brands/mtv.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Muhit Kitap",
+            "logo": "brands/muhitkitap.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "NBA TV",
+            "logo": "brands/nbatv.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Nickelodeon",
+            "logo": "brands/nickelodeon.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "NTV",
+            "logo": "brands/ntv.webp",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Pladis Global",
+            "logo": "brands/pladisglobal.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Porsche",
+            "logo": "brands/porsche.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Posta",
+            "logo": "brands/posta.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Prefix",
+            "logo": "brands/prefix.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "PTT",
+            "logo": "brands/ptt.svg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "puhuTV",
+            "logo": "brands/puhutv.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Rönesans Holding",
+            "logo": "brands/ronesansholding.svg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Sabah",
+            "logo": "brands/sabah.png",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Seç Market",
+            "logo": "brands/secmarket.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "SETA",
+            "logo": "brands/seta.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Shell",
+            "logo": "brands/shell.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "ShowTV",
+            "logo": "brands/showtv.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Simit Sarayı",
+            "logo": "brands/simitsarayi.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Sisal Şans",
+            "logo": "brands/sisalsans.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Skoda",
+            "logo": "brands/skoda.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "ŞOK",
+            "logo": "brands/sok.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "sport1",
+            "logo": "brands/sport1.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Starbucks",
+            "logo": "brands/starbucks.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "StarTV",
+            "logo": "brands/startv.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "tabii",
+            "logo": "brands/tabiicom.webp",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Takvim",
+            "logo": "brands/takvim.jpg",
+            "status": 1,
+            "type": "medya"
+            },
+            {
+            "name": "Tarım Kredi",
+            "logo": "brands/tarimkredi.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "teve2",
+            "logo": "brands/teve2.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TGRT Haber",
+            "logo": "brands/tgrthaber.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Türk Hava Yolları",
+            "logo": "brands/thy.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TOGG",
+            "logo": "brands/togg.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Torku",
+            "logo": "brands/torku.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Toshiba",
+            "logo": "brands/toshiba.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TRT",
+            "logo": "brands/trt.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TÜGVA",
+            "logo": "brands/tugva.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TÜRGEV",
+            "logo": "brands/turgev.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Turkcell",
+            "logo": "brands/turkcell.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Türkiye Sigorta",
+            "logo": "brands/turkiyesigorta.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Türk Petrol",
+            "logo": "brands/turkpetrol.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Türk Telekom",
+            "logo": "brands/turktelekom.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Turkuvaz",
+            "logo": "brands/turkuvaz.webp",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TV8",
+            "logo": "brands/tv8.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TV8,5",
+            "logo": "brands/tv85.webp",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Turkcell TV+",
+            "logo": "brands/tvplus.webp",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Üç Dört Beş",
+            "logo": "brands/ucdortbes.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Ülker",
+            "logo": "brands/ulker.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Uyum Market",
+            "logo": "brands/uyummarket.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Vakıfbank",
+            "logo": "brands/vakifbank.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Vatan",
+            "logo": "brands/vatan.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "VAV TV",
+            "logo": "brands/vavtv.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Vestel",
+            "logo": "brands/vestel.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Vogue",
+            "logo": "brands/vogue.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Volkswagen",
+            "logo": "brands/volkswagen.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Watsons",
+            "logo": "brands/watsons.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Yaani",
+            "logo": "brands/yaani.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Yeni Asır",
+            "logo": "brands/yeaniasir.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Yemek Sepeti",
+            "logo": "brands/yemeksepeti.webp",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Yıldız Holding",
+            "logo": "brands/yildizholding.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Ziraat Bankası",
+            "logo": "brands/ziraatbankasi.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Zorlu",
+            "logo": "brands/zorlu.gif",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Ustam Baklavaları",
+            "logo": "brands/ustambaklavalari.png",
+            "status": 0,
+            "type": ""
+            },
+            {
+            "name": "Yapı Kredi",
+            "logo": "brands/yapikredi.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Acun Medya",
+            "logo": "brands/acunmedya.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Nusr-et",
+            "logo": "brands/nusret.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Bloomberg",
+            "logo": "brands/bloomberg.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Kukuli",
+            "logo": "brands/kukuli.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Opet",
+            "logo": "brands/opet.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Aygaz",
+            "logo": "brands/aygaz.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Mogaz",
+            "logo": "brands/mogaz.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Trendyol",
+            "logo": "brands/trendyol.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Kiko",
+            "logo": "brands/kiko.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Beko",
+            "logo": "brands/beko.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Arçelik",
+            "logo": "brands/arcelik.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Altus",
+            "logo": "brands/altus.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "AVIS",
+            "logo": "brands/avis.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "SEK",
+            "logo": "brands/sek.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "TAT",
+            "logo": "brands/tat.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "PastaVilla",
+            "logo": "brands/pastavilla.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Koçtaş",
+            "logo": "brands/koctas.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Sofra",
+            "logo": "brands/sofra.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Sabit Fikir",
+            "logo": "brands/sabitfikir.jpeg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "İş Kültür Yayınları",
+            "logo": "brands/iskulturyayinlari.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Türkiye Petrolleri",
+            "logo": "brands/tp.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Kral",
+            "logo": "brands/kral.jpg",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Regal",
+            "logo": "brands/regal.webp",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "İhlas Ev Aletleri",
+            "logo": "brands/ihlasevaletleri.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Milangaz",
+            "logo": "brands/milangaz.png",
+            "status": 1,
+            "type": ""
+            },
+            {
+            "name": "Likidgaz",
+            "logo": "brands/likidgaz.gif",
+            "status": 1,
+            "type": ""
+        }];
+    
+        // Marka bilgilerini listelemek için ana fonksiyon
+        const renderBrands = () => {
+            const brandList = document.getElementById('brandList');
+    
+            // Verileri sıralayıp listeleme
+            brands.sort((a, b) => a.name.localeCompare(b.name));
+    
+            // JSON'daki markaları döngü ile eklemek
+            brands.forEach(brand => {
+                const brandCard = document.createElement('div');
+                brandCard.classList.add('brand-card', 'flex', 'items-center', 'bg-gray-800', 'border', 'border-gray-700', 'rounded-lg', 'shadow-sm');
+                brandCard.setAttribute('data-type', brand.type);
+    
+                const brandImage = document.createElement('img');
+                brandImage.classList.add('object-fit', 'w-24', 'h-24', 'rounded-s-lg');
+                brandImage.src = brand.logo;
+                brandImage.alt = brand.name;
+    
+                const brandName = document.createElement('h5');
+                brandName.classList.add('text-xl', 'font-bold', 'text-white');
+                brandName.textContent = brand.name;
+    
+                const boycottTag = document.createElement('span');
+                if (brand.status === 1) {
+                    boycottTag.classList.add('text-red-500', 'text-xs', 'font-thin');
+                    boycottTag.textContent = 'Kesin boykot markasıdır!';
+                } else if (brand.status === 0) {
+                    boycottTag.classList.add('text-orange-500', 'text-xs', 'font-thin');
+                    boycottTag.textContent = 'Boykot olduğu kesin değil!';
+                }
+    
+                const cardContent = document.createElement('div');
+                cardContent.classList.add('p-4', 'flex-1');
+                cardContent.appendChild(brandName);
+                cardContent.appendChild(boycottTag);
+    
+                brandCard.appendChild(brandImage);
+                brandCard.appendChild(cardContent);
+    
+                brandList.appendChild(brandCard);
+            });
+        };
+    
+        // Arama işlemi
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', () => {
+            const searchValue = searchInput.value.toLowerCase().trim();
+            const brandCards = document.querySelectorAll('.brand-card');
+    
+            brandCards.forEach(card => {
+                const brandName = card.querySelector('h5').textContent.toLowerCase();
+                if (brandName.includes(searchValue) || searchValue === '') {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    
+        // Filtreleme işlemi
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedFilter = button.getAttribute('data-filter');
+                const brandCards = document.querySelectorAll('.brand-card');
+    
+                brandCards.forEach(card => {
+                    const brandType = card.getAttribute('data-type');
+                    if (selectedFilter === 'all' || selectedFilter === brandType) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    
+        // Sayfa yüklendiğinde markaları oluştur
+        document.addEventListener('DOMContentLoaded', renderBrands);
+    </script>
+</body>
+</html>
