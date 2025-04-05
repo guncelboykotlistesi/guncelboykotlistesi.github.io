@@ -4,7 +4,72 @@
     "logo": "assets/supports/elmacik.jpg",
     "status": 1,
     "type": "gida"
+    },
+    {
+    "name": "Eker",
+    "logo": "assets/supports/eker.webp",
+    "status": 1,
+    "type": "gida"
+    },
+    {
+    "name": "AOÇ",
+    "logo": "assets/supports/aoc.png",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Barilla",
+    "logo": "assets/supports/barilla.png",
+    "status": 1,
+    "type": "gida"
+    },
+    {
+    "name": "Filiz",
+    "logo": "assets/supports/filiz.jpg",
+    "status": 1,
+    "type": "gida"
+    },
+    {
+    "name": "Biryağ",
+    "logo": "assets/supports/biryag.webp",
+    "status": 1,
+    "type": "gida"
+    },
+    {
+    "name": "Yudum",
+    "logo": "assets/supports/yudum.jpg",
+    "status": 1,
+    "type": "gida"
+    },
+    {
+    "name": "Beta Tea",
+    "logo": "assets/supports/betatea.png",
+    "status": 1,
+    "type": "gida"
+    },
+    {
+    "name": "Çağdaş Market",
+    "logo": "assets/supports/cagdas.png",
+    "status": 1,
+    "type": "alisveris"
+    },
+    {
+    "name": "Isana",
+    "logo": "assets/supports/isana.png",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Domol",
+    "logo": "assets/supports/domol.png",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Ecco",
+    "logo": "assets/supports/ecco.jpg",
+    "status": 1,
+    "type": ""
     }
-
 
 ]

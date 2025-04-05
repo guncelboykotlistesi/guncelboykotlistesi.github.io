@@ -33,5 +33,10 @@
     "name": "Furkan Andıç",
     "logo": "assets/celebrities/FurkanAndic.jpg",
     "status": 1
+    },
+    {
+    "name": "Berna Laçin",
+    "logo": "assets/celebrities/BernaLacin.jpg",
+    "status": 1
     }
 ]
