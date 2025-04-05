@@ -765,6 +765,7 @@
     {
     "name": "Vestel",
     "logo": "assets/brands/vestel.png",
+    "description": "Ahmet Nazif Zorlu AK Parti Denizli 8. Olağan İl Kongresi",
     "status": 1,
     "type": ""
     },
@@ -970,6 +971,7 @@
     {
     "name": "Regal",
     "logo": "assets/brands/regal.webp",
+    "description": "Ahmet Nazif Zorlu AK Parti Denizli 8. Olağan İl Kongresi",
     "status": 1,
     "type": ""
     },
@@ -1128,6 +1130,27 @@
     "name": "Artukbey Kahve",
     "logo": "assets/brands/artukbeykahve.jpg",
     "description": "",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Taç",
+    "logo": "assets/brands/tac.webp",
+    "description": "Ahmet Nazif Zorlu AK Parti Denizli 8. Olağan İl Kongresi",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Linens",
+    "logo": "assets/brands/linens.png",
+    "description": "Ahmet Nazif Zorlu AK Parti Denizli 8. Olağan İl Kongresi",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Pierre Cardin",
+    "logo": "assets/brands/pierrecardin.png",
+    "description": "Ahmet Nazif Zorlu AK Parti Denizli 8. Olağan İl Kongresi",
     "status": 1,
     "type": ""
     }
