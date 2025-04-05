@@ -3,52 +3,58 @@ const renderBrands = () => {
     const brandList = document.getElementById('brandList');
 
     fetch('./assets/brands.json')
-        .then(response => response.json())
-        .then(brands => {
-            // Verileri sıralayıp listeleme
-            brands.sort((a, b) => a.name.localeCompare(b.name));
+    .then(response => response.json())
+    .then(brands => {
+        // Marka sayısını hesaplama
+        const totalBrands = brands.length;
 
-            // JSON'daki markaları döngü ile eklemek
-            brands.forEach(brand => {
-                const brandCard = document.createElement('div');
-                brandCard.classList.add('brand-card', 'flex', 'items-center', 'bg-gray-800', 'border', 'border-gray-700', 'rounded-lg', 'shadow-sm');
-                brandCard.setAttribute('data-type', brand.type);
+        // Marka sayısını ekrana yazdırma
+        const brandCountText = document.getElementById('brandCountText');
+        brandCountText.textContent = `Boykot edilen <b>${totalBrands}</b> adet marka var!`;
 
-                const brandImage = document.createElement('img');
-                brandImage.classList.add('object-fit', 'w-24', 'h-24', 'rounded-s-lg');
-                brandImage.src = brand.logo;
-                brandImage.alt = brand.name;
+        // Mevcut markaları listeleme
+        const brandList = document.getElementById('brandList');
+        brands.sort((a, b) => a.name.localeCompare(b.name));
+        brands.forEach(brand => {
+            const brandCard = document.createElement('div');
+            brandCard.classList.add('brand-card', 'flex', 'items-center', 'bg-gray-800', 'border', 'border-gray-700', 'rounded-lg', 'shadow-sm');
+            brandCard.setAttribute('data-type', brand.type);
 
-                const brandName = document.createElement('h5');
-                brandName.classList.add('text-xl', 'font-bold', 'text-white');
-                brandName.textContent = brand.name;
+            const brandImage = document.createElement('img');
+            brandImage.classList.add('object-fit', 'w-24', 'h-24', 'rounded-s-lg');
+            brandImage.src = brand.logo;
+            brandImage.alt = brand.name;
 
-                const brandDescription = document.createElement('p');
-                brandDescription.classList.add('text-gray-400', 'text-xs');
-                brandDescription.textContent = brand.description || "Henüz açıklama eklenmedi.";
+            const brandName = document.createElement('h5');
+            brandName.classList.add('text-xl', 'font-bold', 'text-white');
+            brandName.textContent = brand.name;
 
-                const boycottTag = document.createElement('span');
-                if (brand.status === 1) {
-                    boycottTag.classList.add('text-red-500', 'text-xs', 'font-thin');
-                    boycottTag.textContent = 'Kesin boykot markasıdır!';
-                } else if (brand.status === 0) {
-                    boycottTag.classList.add('text-orange-500', 'text-xs', 'font-thin');
-                    boycottTag.textContent = 'Boykot olduğu kesin değil!';
-                }
+            const brandDescription = document.createElement('p');
+            brandDescription.classList.add('text-gray-400', 'text-sm', 'mt-1');
+            brandDescription.textContent = brand.description || 'Açıklama yok';
 
-                const cardContent = document.createElement('div');
-                cardContent.classList.add('p-4', 'flex-1');
-                cardContent.appendChild(brandName);
-                cardContent.appendChild(brandDescription);
-                cardContent.appendChild(boycottTag);
+            const boycottTag = document.createElement('span');
+            if (brand.status === 1) {
+                boycottTag.classList.add('text-red-500', 'text-xs', 'font-thin');
+                boycottTag.textContent = 'Kesin boykot markasıdır!';
+            } else if (brand.status === 0) {
+                boycottTag.classList.add('text-orange-500', 'text-xs', 'font-thin');
+                boycottTag.textContent = 'Boykot olduğu kesin değil!';
+            }
 
-                brandCard.appendChild(brandImage);
-                brandCard.appendChild(cardContent);
+            const cardContent = document.createElement('div');
+            cardContent.classList.add('p-4', 'flex-1');
+            cardContent.appendChild(brandName);
+            cardContent.appendChild(brandDescription);
+            cardContent.appendChild(boycottTag);
 
-                brandList.appendChild(brandCard);
-            });
-        })
-        .catch(error => console.error('Veri çekme hatası:', error));
+            brandCard.appendChild(brandImage);
+            brandCard.appendChild(cardContent);
+
+            brandList.appendChild(brandCard);
+        });
+    })
+    .catch(error => console.error('Veri çekme hatası:', error));
 };
 
 
