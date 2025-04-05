@@ -23,6 +23,10 @@ const renderBrands = () => {
                 brandName.classList.add('text-xl', 'font-bold', 'text-white');
                 brandName.textContent = brand.name;
 
+                const brandDescription = document.createElement('p');
+                brandDescription.classList.add('text-gray-400', 'text-xs');
+                brandDescription.textContent = brand.description || "Henüz açıklama eklenmedi.";
+
                 const boycottTag = document.createElement('span');
                 if (brand.status === 1) {
                     boycottTag.classList.add('text-red-500', 'text-xs', 'font-thin');
@@ -35,6 +39,7 @@ const renderBrands = () => {
                 const cardContent = document.createElement('div');
                 cardContent.classList.add('p-4', 'flex-1');
                 cardContent.appendChild(brandName);
+                cardContent.appendChild(brandDescription);
                 cardContent.appendChild(boycottTag);
 
                 brandCard.appendChild(brandImage);

@@ -8,6 +8,7 @@
     {
     "name": "A101",
     "logo": "assets/brands/a101.png",
+    "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
     "status": 1,
     "type": "alisveris"
     },
@@ -38,6 +39,7 @@
     {
     "name": "Anadolu Grubu",
     "logo": "assets/brands/anadolugrubu.jpg",
+    "description": "Tuncay Özilhan'a ait",
     "status": 1,
     "type": ""
     },
@@ -146,12 +148,14 @@
     {
     "name": "CNNTürk",
     "logo": "assets/brands/cnnturk.png",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
     {
     "name": "Coca Cola",
     "logo": "assets/brands/cocacola.webp",
+    "description": "Tuncay Özilhan'a ait",
     "status": 1,
     "type": "gida"
     },
@@ -200,12 +204,14 @@
     {
     "name": "DSMART",
     "logo": "assets/brands/dsmart.png",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
     {
     "name": "Efes Pilsen",
     "logo": "assets/brands/efes.png",
+    "description": "Tuncay Özilhan'a ait",
     "status": 1,
     "type": "gida"
     },
@@ -230,6 +236,7 @@
     {
     "name": "Fanatik",
     "logo": "assets/brands/fanatik.jpg",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
@@ -272,6 +279,7 @@
     {
     "name": "Godiva",
     "logo": "assets/brands/godiva.jpg",
+    "description": "Murat Ülker'e ait",
     "status": 1,
     "type": ""
     },
@@ -290,12 +298,14 @@
     {
     "name": "Hürriyet",
     "logo": "assets/brands/hurriyet.webp",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
     {
-    "name": "İddia",
+    "name": "İddaa",
     "logo": "assets/brands/iddia.jpg",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
@@ -338,6 +348,7 @@
     {
     "name": "KanalD",
     "logo": "assets/brands/kanald.png",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
@@ -410,6 +421,7 @@
     {
     "name": "Migros",
     "logo": "assets/brands/migros.png",
+    "description": "Tuncay Özilhan'a ait",
     "status": 1,
     "type": ""
     },
@@ -422,6 +434,7 @@
     {
     "name": "Milliyet",
     "logo": "assets/brands/milliyet.png",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
@@ -440,6 +453,7 @@
     {
     "name": "Misli",
     "logo": "assets/brands/misli.jpg",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": ""
     },
@@ -488,6 +502,7 @@
     {
     "name": "Posta",
     "logo": "assets/brands/posta.jpg",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": "medya"
     },
@@ -524,6 +539,7 @@
     {
     "name": "Seç Market",
     "logo": "assets/brands/secmarket.png",
+    "description": "Murat Ülker'e ait",
     "status": 1,
     "type": ""
     },
@@ -566,6 +582,7 @@
     {
     "name": "ŞOK",
     "logo": "assets/brands/sok.png",
+    "description": "Murat Ülker'e ait",
     "status": 1,
     "type": ""
     },
@@ -608,6 +625,7 @@
     {
     "name": "teve2",
     "logo": "assets/brands/teve2.jpg",
+    "description": "Büyük Yandaş",
     "status": 1,
     "type": ""
     },
@@ -716,6 +734,7 @@
     {
     "name": "Ülker",
     "logo": "assets/brands/ulker.jpg",
+    "description": "Murat Ülker'e ait",
     "status": 1,
     "type": ""
     },
@@ -788,6 +807,7 @@
     {
     "name": "Yıldız Holding",
     "logo": "assets/brands/yildizholding.jpg",
+    "description": "Murat Ülker'e ait",
     "status": 1,
     "type": ""
     },
@@ -970,4 +990,126 @@
     "logo": "assets/brands/likidgaz.gif",
     "status": 1,
     "type": ""
-}]
+    },
+    {
+    "name": "Superfresh",
+    "logo": "assets/brands/superfresh.png",
+    "description": "Murat Ülker'e ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Aytaç",
+    "logo": "assets/brands/aytac.png",
+    "description": "Murat Ülker'e ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Besler",
+    "logo": "assets/brands/besler.png",
+    "description": "Murat Ülker'e ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Mis Süt",
+    "logo": "assets/brands/missut.jpg",
+    "description": "Murat Ülker'e ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Bizim Toptan",
+    "logo": "assets/brands/bizimtoptan.jpg",
+    "description": "Murat Ülker'e ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Fanta",
+    "logo": "assets/brands/fanta.png",
+    "description": "Tuncay Özilhan'a ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Sprite",
+    "logo": "assets/brands/sprite.jpg",
+    "description": "Tuncay Özilhan'a ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "FuseTea",
+    "logo": "assets/brands/fusetea.jpg",
+    "description": "Tuncay Özilhan'a ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Damla Su",
+    "logo": "assets/brands/damlasu.webp",
+    "description": "Tuncay Özilhan'a ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "ISUZU",
+    "logo": "assets/brands/isuzu.jpg",
+    "description": "Tuncay Özilhan'a ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Garenta",
+    "logo": "assets/brands/garenta.png",
+    "description": "Tuncay Özilhan'a ait",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Aydın Grup",
+    "logo": "assets/brands/aydingrup.jpg",
+    "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "MEMORIAL",
+    "logo": "assets/brands/memorial.jpg",
+    "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "English Home",
+    "logo": "assets/brands/englishhome.webp",
+    "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Eve Shop",
+    "logo": "assets/brands/eveshop.jpg",
+    "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Pizza Lazza",
+    "logo": "assets/brands/pizzalazza.jpg",
+    "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Saloon Burger",
+    "logo": "assets/brands/saloonburger.jpg",
+    "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
+    "status": 1,
+    "type": ""
+    }
+
+
+]
