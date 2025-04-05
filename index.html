@@ -14,32 +14,57 @@
     <link href="assets/style.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 p-4">
-    <div class="max-w-4xl mx-auto brandList mt-2">
-        <div id="alertBox" class="bg-blue-500 text-white p-4 rounded-lg mb-4">
-            <i class="fas fa-info-circle mr-3"></i>Listede eksik olduğunu düşünüyorsanız <a href="https://bsky.app/profile/boykotlistesi.bsky.social" target="_blank" class="text-blue-200 underline">Bluesky</a> üzerinden mesaj atabilirsiniz.
+        <!-- Sabit Header -->
+        <header id="fixedHeader" class="bg-gray-800 text-white w-full py-4 px-6 fixed top-0 left-0 right-0 z-50">
+            <div class="flex justify-between items-center max-w-4xl mx-auto">
+                <!-- Logo -->
+                <div id="hhLogo" class="flex items-center">
+                    <img src="assets/logo.png" alt="Logo" class="w-10 h-10 mr-3 rounded-lg">
+                </div>
+    
+                <!-- Menü Butonları -->
+                <nav class="flex gap-4">
+                    <button id="boykotButton" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                        Boykot
+                    </button>
+                    <button id="destekButton" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                        Destek
+                    </button>
+                    <button id="unlulerButton" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                        Ünlüler
+                    </button>
+                </nav>
+            </div>
+        </header>
+        
+    <main class="pt-20">
+        <div class="max-w-4xl mx-auto brandList mt-2">
+            <div id="alertBox" class="bg-blue-500 text-white p-4 rounded-lg mb-4">
+                <i class="fas fa-info-circle mr-3"></i>Listede eksik olduğunu düşünüyorsanız <a href="https://bsky.app/profile/boykotlistesi.bsky.social" target="_blank" class="text-blue-200 underline">Bluesky</a> üzerinden mesaj atabilirsiniz.
+            </div>
+
+            <p id="brandCountText" class="text-gray-400 text-xs mb-2"></p>
+
+            <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Boykot markası arayın..." 
+            class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+            <!-- Filtreleme Butonları -->
+            <div id="filterButtons" class="flex gap-2 mb-4">
+                <button data-filter="all" class="filter-btn bg-blue-500 text-white px-1 py-1 rounded-lg">Tümü</button>
+                <button data-filter="akaryakit" class="filter-btn bg-red-500 text-white px-1 py-1 rounded-lg">Akaryakıt</button>
+                <button data-filter="alisveris" class="filter-btn bg-purple-500 text-white px-1 py-1 rounded-lg">Alışveriş</button>
+                <button data-filter="gida" class="filter-btn bg-orange-500 text-white px-1 py-1 rounded-lg">Gıda</button>
+                <button data-filter="dukkan" class="filter-btn bg-green-500 text-white px-1 py-1 rounded-lg">Dükkan</button>
+                <button data-filter="medya" class="filter-btn bg-gray-500 text-white px-1 py-1 rounded-lg">Medya</button>
+
+            </div>
+
+            <div id="brandList" class="space-y-4"></div>
         </div>
-
-        <p id="brandCountText" class="text-gray-400 text-xs mb-2"></p>
-
-        <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="Boykot markası arayın..." 
-        class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-
-        <!-- Filtreleme Butonları -->
-        <div id="filterButtons" class="flex gap-2 mb-4">
-            <button data-filter="all" class="filter-btn bg-blue-500 text-white px-1 py-1 rounded-lg">Tümü</button>
-            <button data-filter="akaryakit" class="filter-btn bg-red-500 text-white px-1 py-1 rounded-lg">Akaryakıt</button>
-            <button data-filter="alisveris" class="filter-btn bg-purple-500 text-white px-1 py-1 rounded-lg">Alışveriş</button>
-            <button data-filter="gida" class="filter-btn bg-orange-500 text-white px-1 py-1 rounded-lg">Gıda</button>
-            <button data-filter="dukkan" class="filter-btn bg-green-500 text-white px-1 py-1 rounded-lg">Dükkan</button>
-            <button data-filter="medya" class="filter-btn bg-gray-500 text-white px-1 py-1 rounded-lg">Medya</button>
-
-        </div>
-
-        <div id="brandList" class="space-y-4"></div>
-    </div>
+    </main>
 
     <script src="assets/script.js"></script>
 </body>
