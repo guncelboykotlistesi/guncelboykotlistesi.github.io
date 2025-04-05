@@ -1168,6 +1168,13 @@
     "description": "Sahibi Çetin Tekdemir FETÖ/PDY operasyonlarında tutuklandı",
     "status": 1,
     "type": ""
+    },
+    {
+    "name": "Sleepy",
+    "logo": "assets/brands/sleepy.png",
+    "description": "Boykot paylaşımı yapan çalışanı işten çıkardı",
+    "status": 1,
+    "type": ""
     }
 
 ]
