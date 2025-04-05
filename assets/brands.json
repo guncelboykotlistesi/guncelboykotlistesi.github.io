@@ -1109,7 +1109,20 @@
     "description": "Turgut Aydın'a ait, FETÖ/PDY bağlantısı nedeniyle gözaltına alındı.",
     "status": 1,
     "type": ""
+    },
+    {
+    "name": "Dolap",
+    "logo": "assets/brands/dolap.jpg",
+    "description": "Trendyol'un ikinci el platformu",
+    "status": 1,
+    "type": ""
+    },
+    {
+    "name": "Maydonoz Döner",
+    "logo": "assets/brands/maydonozdoner.png",
+    "description": "FETÖ Soruşturması",
+    "status": 1,
+    "type": ""
     }
-
 
 ]
