@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Alert Box */
+#alertBox {
+    background-color: #0b8cf5; /* Sarı tonlarında arka plan */
+    color: white; /* Yazı rengi beyaz */
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Input ile araya boşluk ekliyoruz */
+}
+
+/* Alert Box */
+#alertBox2 {
+    background-color: #F59E0B; /* Sarı tonlarında arka plan */
+    color: white; /* Yazı rengi beyaz */
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Input ile araya boşluk ekliyoruz */
+}
+
+#filterButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+
+@media (min-width: 640px) {
+    .filter-btn {
+        flex: 1 1 auto;
+        max-width: none;
+    }
+}
