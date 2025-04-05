@@ -6,7 +6,7 @@
     <meta name="description" content="Güncel Boykot Listesi ile iktidar yanlısı boykot markalarını öğrenin. Boykot markaları listesi ile bilinçli tüketim yapın!">
     <meta name="keywords" content="boykot, markalar, liste, boykot markaları, bilinçli tüketim, diktatörlük erişim engeli">
     <meta name="robots" content="index, follow">
-    <title>Boykot Listesi</title>
+    <title>Destek Listesi</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -42,8 +42,8 @@
 
             <input 
             type="text" 
-            id="brandSearchInput" 
-            placeholder="Boykot markası arayın..." 
+            id="searchInput" 
+            placeholder="Destek markası arayın..." 
             class="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
 
             <!-- Filtreleme Butonları -->
@@ -56,64 +56,64 @@
                 <button data-filter="medya" class="filter-btn bg-gray-500 text-white px-1 py-1 rounded-lg">Medya</button>
             </div>
 
-            <div id="brandList" class="space-y-4"></div>
+            <div id="supportList" class="space-y-4"></div>
         </div>
     </main>
 
     <script>
-        const renderBrands = () => {
-            const brandList = document.getElementById('brandList');
+        const renderSupports = () => {
+            const supportList = document.getElementById('supportList');
 
-            fetch('./assets/brands.json')
+            fetch('./assets/supports.json')
             .then(response => response.json())
-            .then(brands => {
+            .then(supports => {
                 // Marka sayısını hesaplama
-                const totalBrands = brands.length;
+                const totalSupports = supports.length;
 
                 // Marka sayısını ekrana yazdırma
-                const brandCountText = document.getElementById('brandCountText');
-                brandCountText.innerHTML = `Boykot edilen <b>${totalBrands}</b> adet marka var!`;
+                const supportCountText = document.getElementById('supportCountText');
+                supportCountText.innerHTML = `Destek verilen <b>${totalSupports}</b> adet marka var!`;
 
                 // Mevcut markaları listeleme
-                const brandList = document.getElementById('brandList');
-                brands.sort((a, b) => a.name.localeCompare(b.name));
-                brands.forEach(brand => {
-                    const brandCard = document.createElement('div');
-                    brandCard.classList.add('brand-card', 'flex', 'items-center', 'bg-gray-800', 'border', 'border-gray-700', 'rounded-lg', 'shadow-sm');
-                    brandCard.setAttribute('data-type', brand.type);
+                const supportList = document.getElementById('supportList');
+                supports.sort((a, b) => a.name.localeCompare(b.name));
+                supports.forEach(support => {
+                    const supportCard = document.createElement('div');
+                    supportCard.classList.add('support-card', 'flex', 'items-center', 'bg-gray-800', 'border', 'border-gray-700', 'rounded-lg', 'shadow-sm');
+                    supportCard.setAttribute('data-type', support.type);
 
-                    const brandImage = document.createElement('img');
-                    brandImage.classList.add('object-fit', 'w-24', 'h-24', 'rounded-s-lg');
-                    brandImage.src = brand.logo;
-                    brandImage.alt = brand.name;
+                    const supportImage = document.createElement('img');
+                    supportImage.classList.add('object-fit', 'w-24', 'h-24', 'rounded-s-lg');
+                    supportImage.src = support.logo;
+                    supportImage.alt = support.name;
 
-                    const brandName = document.createElement('h5');
-                    brandName.classList.add('text-xl', 'font-bold', 'text-white');
-                    brandName.textContent = brand.name;
+                    const supportName = document.createElement('h5');
+                    supportName.classList.add('text-xl', 'font-bold', 'text-white');
+                    supportName.textContent = support.name;
 
-                    const brandDescription = document.createElement('p');
-                    brandDescription.classList.add('text-gray-400', 'text-xs');
-                    brandDescription.textContent = brand.description;
+                    const supportDescription = document.createElement('p');
+                    supportDescription.classList.add('text-gray-400', 'text-xs');
+                    supportDescription.textContent = support.description;
 
                     const boycottTag = document.createElement('span');
-                    if (brand.status === 1) {
-                        boycottTag.classList.add('text-red-500', 'text-xs', 'font-thin');
-                        boycottTag.textContent = 'Kesin boykot markasıdır!';
-                    } else if (brand.status === 0) {
+                    if (support.status === 1) {
+                        boycottTag.classList.add('text-green-500', 'text-xs', 'font-thin');
+                        boycottTag.textContent = 'Kesin destek markasıdır!';
+                    } else if (support.status === 0) {
                         boycottTag.classList.add('text-orange-500', 'text-xs', 'font-thin');
                         boycottTag.textContent = 'Boykot olduğu kesin değil!';
                     }
 
                     const cardContent = document.createElement('div');
                     cardContent.classList.add('p-4', 'flex-1');
-                    cardContent.appendChild(brandName);
-                    cardContent.appendChild(brandDescription);
+                    cardContent.appendChild(supportName);
+                    cardContent.appendChild(supportDescription);
                     cardContent.appendChild(boycottTag);
 
-                    brandCard.appendChild(brandImage);
-                    brandCard.appendChild(cardContent);
+                    supportCard.appendChild(supportImage);
+                    supportCard.appendChild(cardContent);
 
-                    brandList.appendChild(brandCard);
+                    supportList.appendChild(supportCard);
                 });
             })
             .catch(error => console.error('Veri çekme hatası:', error));
@@ -121,14 +121,14 @@
 
 
         // Arama işlemi
-        const brandSearchInput = document.getElementById('brandSearchInput');
-        brandSearchInput.addEventListener('input', () => {
-            const searchValue = brandSearchInput.value.toLowerCase().trim();
-            const brandCards = document.querySelectorAll('.brand-card');
+        const supportSearchInput = document.getElementById('supportSearchInput');
+        supportSearchInput.addEventListener('input', () => {
+            const searchValue = supportSearchInput.value.toLowerCase().trim();
+            const supportCards = document.querySelectorAll('.support-card');
 
-            brandCards.forEach(card => {
-                const brandName = card.querySelector('h5').textContent.toLowerCase();
-                if (brandName.includes(searchValue) || searchValue === '') {
+            supportCards.forEach(card => {
+                const supportName = card.querySelector('h5').textContent.toLowerCase();
+                if (supportName.includes(searchValue) || searchValue === '') {
                     card.classList.remove('hidden');
                 } else {
                     card.classList.add('hidden');
@@ -141,11 +141,11 @@
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const selectedFilter = button.getAttribute('data-filter');
-                const brandCards = document.querySelectorAll('.brand-card');
+                const supportCards = document.querySelectorAll('.support-card');
 
-                brandCards.forEach(card => {
-                    const brandType = card.getAttribute('data-type');
-                    if (selectedFilter === 'all' || selectedFilter === brandType) {
+                supportCards.forEach(card => {
+                    const supportType = card.getAttribute('data-type');
+                    if (selectedFilter === 'all' || selectedFilter === supportType) {
                         card.classList.remove('hidden');
                     } else {
                         card.classList.add('hidden');
@@ -155,7 +155,7 @@
         });
 
         // Sayfa yüklendiğinde markaları oluştur
-        document.addEventListener('DOMContentLoaded', renderBrands);
+        document.addEventListener('DOMContentLoaded', renderSupports);
     </script>
 </body>
 </html>
