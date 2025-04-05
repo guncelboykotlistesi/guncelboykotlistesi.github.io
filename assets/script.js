@@ -10,7 +10,7 @@ const renderBrands = () => {
 
         // Marka sayısını ekrana yazdırma
         const brandCountText = document.getElementById('brandCountText');
-        brandCountText.innerHTML = `Boykot edilen <b>${totalBrands}</b> adet marka var!`;
+        brandCountText.textContent = `Boykot edilen ${totalBrands} adet marka var!`;
 
         // Mevcut markaları listeleme
         const brandList = document.getElementById('brandList');
